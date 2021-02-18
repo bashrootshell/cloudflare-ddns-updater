@@ -16,7 +16,7 @@ token='Bearer REPLACE VALUE'
 
 if [ -f ./current_ip_address ]; then
   if grep -q "$current_ip_address" current_ip_address; then
-      echo "$data > Same IP address: $ipaddr"
+      echo "$data > Same IP address: $current_ip_address"
       exit 1
   else
     curl -X PUT "$api_url/$domain_zone/dns_records/$dns_record" \
@@ -24,7 +24,7 @@ if [ -f ./current_ip_address ]; then
     -H "Content-Type: application/json" \
     --data '{"type":"A","name":"DOMAIN_NAME","content":"'$current_ip_address'","ttl":1,"proxied":true}'
     echo $current_ip_address > current_ip_address
-    echo "timestamp: $unixtime  |  New IP Address: $ipaddr"
+    echo "timestamp: $unixtime  |  New IP Address: $current_ip_address"
     exit 0
   fi
 else

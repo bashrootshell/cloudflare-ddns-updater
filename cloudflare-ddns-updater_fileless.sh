@@ -20,7 +20,7 @@ cld_ip=$(curl -s -X GET "$api_url/$domain_zone/dns_records/$dns_record" \
 | json_pp | grep content | egrep -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}")
 
 if [ $current_ip_address == $cld_ip ]; then
-    echo "$unixtime|Same IP address: $ipaddr"
+    echo "$unixtime|Same IP address: $current_ip_address"
     exit 1
 else
       curl -X PUT "$api_url/$domain_zone/dns_records/$dns_record" \
