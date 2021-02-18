@@ -15,7 +15,7 @@ dns_record='REPLACE'
 token='Bearer REPLACE VALUE'
 
 if [ -f ./current_ip_address ]; then
-  if grep -q "$ipaddr" current_ip_address; then
+  if grep -q "$current_ip_address" current_ip_address; then
       echo "$data > Same IP address: $ipaddr"
       exit 1
   else
@@ -23,7 +23,7 @@ if [ -f ./current_ip_address ]; then
     -H "Authorization: $token" \
     -H "Content-Type: application/json" \
     --data '{"type":"A","name":"DOMAIN_NAME","content":"'$current_ip_address'","ttl":1,"proxied":true}'
-    echo $ipaddr > current_ip_address
+    echo $current_ip_address > current_ip_address
     echo "timestamp: $unixtime  |  New IP Address: $ipaddr"
     exit 0
   fi
