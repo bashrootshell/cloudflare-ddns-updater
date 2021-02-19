@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## Bash DDNS Updater for Cloudflare DNS API
-## Change values according to your needs (proxied, TTL, DOMAIN_NAME)
+## Change values according to your needs (proxied, TTL, A_RECORD)
 ## Create a crontab entry for this file so it can run from time to time.
 ## Ex: * */6 * * * /home/user/cloudflare-ddns-updater.sh > /home/user/ddns.log
 
@@ -16,18 +16,18 @@ token='Bearer REPLACE VALUE'
 
 if [ -f ./current_ip_address ]; then
   if grep -q "$current_ip_address" current_ip_address; then
-      echo "$data > Same IP address: $current_ip_address"
+      echo "$unixtime > Same IP address: $current_ip_address"
       exit 1
   else
     curl -X PUT "$api_url/$domain_zone/dns_records/$dns_record" \
     -H "Authorization: $token" \
     -H "Content-Type: application/json" \
-    --data '{"type":"A","name":"DOMAIN_NAME","content":"'$current_ip_address'","ttl":1,"proxied":true}'
+    --data '{"type":"A","name":"A_RECORD","content":"'$current_ip_address'","ttl":1,"proxied":true}'
     echo $current_ip_address > current_ip_address
     echo "timestamp: $unixtime  |  New IP Address: $current_ip_address"
     exit 0
   fi
 else
-  echo $ipaddr > ./current_ip_address
+  echo $ipaddr > current_ip_address
   exit 1
 fi
