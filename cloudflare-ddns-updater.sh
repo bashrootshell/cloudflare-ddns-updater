@@ -6,7 +6,8 @@
 ## Ex: * */6 * * * /home/user/cloudflare-ddns-updater.sh > /home/user/ddns.log
 
 file=./current_ip_address.txt
-current_ip_address=$(curl -s https://api.ipify.org)
+#  now using DNS query > much faster than using HTTP
+current_ip_address=$(dig -4 +short myip.opendns.com @resolver1.opendns.com.)
 unixtime=$(date +%s)
 api_url='https://api.cloudflare.com/client/v4/zones'
 domain_zone='REPLACE'
