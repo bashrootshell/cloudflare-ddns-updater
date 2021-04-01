@@ -18,7 +18,7 @@ from nslookup import Nslookup
 api_url = ('https://api.cloudflare.com/client/v4/zones/'
            '__REPLACE__/dns_records/'
            '__REPLACE__/')
-token = 'Bearer __PUT YOUR TOKE HERE__'
+token = 'Bearer __PUT YOUR TOKEN HERE__'
 auth_header = {'Authorization': token, 'Content-Type': 'application/json'}
 data = {'type': 'A',
         'name': '__REPLACE__',
