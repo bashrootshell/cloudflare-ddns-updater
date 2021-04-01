@@ -12,8 +12,8 @@ from nslookup import Nslookup
 """
 
 #  a litte bit faster than HTTP request
-[current_ip := _ for _ in Nslookup(dns_servers=["208.67.222.222"])
-    .dns_lookup("myip.opendns.com").answer]
+[current_ip := _ for _ in Nslookup(dns_servers=['208.67.222.222'])
+    .dns_lookup('myip.opendns.com').answer]
 
 api_url = ('https://api.cloudflare.com/client/v4/zones/'
            '__REPLACE__/dns_records/'
