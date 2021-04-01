@@ -1,5 +1,5 @@
 # cloudflare-ddns-updater
- 
+
 
 ## Bash and Python3 DDNS Updater for Cloudflare DNS API
 ## Change values according to your needs (proxied, TTL, DOMAIN_NAME)
@@ -10,7 +10,9 @@ as a DDNS provider.
 Python's implementation is actually way simpler than other python scripts out there.
 
 
-PS: 
+PS:
+
+- Read the documentation and make use of API Tokens (Bearer Tokens) (https://developers.cloudflare.com/api/keys) instead of API Keys.
 
 - It assumes a proxied record (all HTTP/HTTPS traffic goes through Cloudflare's CDN).
 
